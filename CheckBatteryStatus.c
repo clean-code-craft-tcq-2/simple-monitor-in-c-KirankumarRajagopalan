@@ -3,7 +3,7 @@
 #include "CheckBatteryStatus.h"
 
 int checkIfItIsInSpecifiedRange(float givenValue, float lowerLimit, float upperLimit){
-  if(givenValue < lowerLimit || temperature > upperLimit) {
+  if(givenValue < lowerLimit || givenValue > upperLimit) {
         return 0;
   }
   return 1;
