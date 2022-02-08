@@ -4,4 +4,7 @@
 #define HIGHER_SOC_LIMIT 80
 #define CHARGERATE_THRESHOLD 0.8
 
-extern int
+extern int checkBatteryTemperature(float temp);
+extern int checkSoCRange(float soc);
+extern int checkChargeRate(float chargeRate);
+extern int checkBatteryHealth(float temp, float soc, float chargeRate);
