@@ -2,35 +2,19 @@
 #include <assert.h>
 #include "CheckBatteryStatus.h"
 
-void testCheckBatteryTemperature(float temp , int status){
-      assert(checkBatteryTemperature(temp) == status);
+void testCheckBatteryCondition(float stateOfCharge, float temp, float chargeRate, enum chosenLanguage language, int expStatus){
+	assert(checkBatteryCondition(stateOfCharge, temp, chargeRate, language) == expStatus);
 }
-
-void testCheckSoCRange(float soc , int status){
-      assert(checkSoCRange(soc) == status);
-}
-
-void testCheckChargeRate(float chargeRate , int status){
-      assert(checkChargeRate(chargeRate) == status);
-}
-
-void testBatteryHealth(float temp, float soc, float chargeRate , int status){
-      assert(checkBatteryHealth(temp, soc, chargeRate) == status);
-}
-
 
 int main() {
-  testCheckBatteryTemperature(25, 1);
-  testCheckBatteryTemperature(50, 0);
-  testCheckBatteryTemperature(-10, 0);
-  testCheckSoCRange(70, 1);
-  testCheckSoCRange(10, 0);
-  testCheckSoCRange(85, 0);
-  testCheckChargeRate(0.7, 1);
-  testCheckChargeRate(0.9, 0);
-  testBatteryHealth(25, 70, 0.7, 3);
-  testBatteryHealth(-15, 30, 0.5, 2);
-  testBatteryHealth(50, 90, 0.75, 1);
-  testBatteryHealth(70, 100, 0.95, 0);
-
+	testCheckBatteryCondition(45, 20, 0.6, English, 1);
+	testCheckBatteryCondition(90, 43, 0.6, English, 0);
+	testCheckBatteryCondition(92, 20, 0.63, German, 0);
+	testCheckBatteryCondition(2, 72, 0.9, German, 0);
+	testCheckBatteryCondition(21, 90, 0.63, English, 0);
+	testCheckBatteryCondition(23, 78, 0.67, English, 0);
+	testCheckBatteryCondition(21, 22, 0.59, English, 0);
+	testCheckBatteryCondition(22, 10, 0.52, German, 0);
+	testCheckBatteryCondition(21, 45, 0.91, German, 0);
+	testCheckBatteryCondition(25, 45, 0.01, German, 0);
 }
